@@ -9,8 +9,17 @@
       </head>
   
       <body>
-        <a-scene>
+        
+        <!-- added fog to the background environment -->
+        <a-scene fog="type: linear; color: #AAA; near: 1; far: 10" physics="debug: true">
 
+          <!-- added text and animated it -->
+          <a-text value="Welcome to this 3D world!" color="black" position="-1 3 -3" 
+            rotation="0 0 0"
+            width="6"
+            animation="property: position; to: 0 2 -5; dur: 2000; loop: true; dir: alternate"
+            animation__rotation="property: rotation; to: 0 360 0; dur: 5000; loop: true"></a-text>
+          
           <!-- animated the all the shapes to rotate by themselves -->
           <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" 
              animation="property: rotation; to: 0 360 0; loop: true; dur: 3000"
@@ -29,9 +38,11 @@
              event-set__mouseenter="_event: mouseenter; color: #EF2D5E"
              event-set__mouseleave="_event: mouseleave; color: #4CC3D9">
           </a-tetrahedron>
-          
+
+          <!-- assets -->
           <a-assets>
             <a-asset-item id="tree-model" src="https://cdn.aframe.io/examples/showcase/tree/Tree.gltf"></a-asset-item>
+            <a-asset-item id="house-model" src="https://example.com/path/to/house-model.gltf"></a-asset-item>
           </a-assets>
           
           <a-plane 
@@ -41,22 +52,23 @@
             color="#7BC8A4">
           </a-plane>
 
-          <a-sky color="#8B4513"></a-sky>
-
+          
           <!-- using forest enviornment preset -->
           <a-entity gltf-model="#tree-model", environment="
             
             preset: forest; 
-            groundColor: #445; 
+            groundColor: #553e35; 
             grid: cross; 
             lightning: distant">
             
-            </a-entity>
+          </a-entity>
+          
+          <a-entity gltf-model="#house-model" position="2 0 -5" scale="1 1 1"></a-entity>
         
         </a-scene>
         
-        
         <script src = "script.js"></script>
+        
       </body>
   
     </html>
